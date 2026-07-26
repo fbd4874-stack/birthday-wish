@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 💌</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF1E6;
+    --paper:#FFFBF5;
+    --blush:#F4C9CE;
+    --rose:#D9536F;
+    --rose-deep:#B23A54;
+    --plum:#3E2140;
+    --ink:#4A2A3E;
+    --gold:#CB9A3C;
+    --gold-light:#E9C875;
+    --shadow: rgba(62,33,64,0.18);
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    min-height:100vh;
+    min-height:100dvh;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(233,200,117,0.25), transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(217,83,111,0.18), transparent 50%),
+      var(--cream);
+    font-family:'Hind Siliguri', sans-serif;
+    color:var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow-x:hidden;
+    position:relative;
+    padding:24px 14px calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+  h1,h2,h3,.display{font-family:'Baloo Da 2', sans-serif;}
+  .signature-font{font-family:'Caveat', cursive;}
+
+  /* ambient drifting hearts */
+  #heart-field{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0;}
+  .heart{
+    position:absolute;
+    bottom:-40px;
+    width:14px;height:14px;
+    background:var(--rose);
+    opacity:.28;
+    transform:rotate(45deg);
+    animation:drift linear infinite;
+    border-radius:2px;
+  }
+  .heart::before,.heart::after{
+    content:"";
+    position:absolute;
+    width:14px;height:14px;
+    background:inherit;
+    border-radius:50%;
+  }
+  .heart::before{left:-7px;top:0;}
+  .heart::after{left:0;top:-7px;}
+  .heart.gold{background:var(--gold-light);}
+  @keyframes drift{
+    0%{transform:translateY(0) rotate(45deg);opacity:0;}
+    10%{opacity:.35;}
+    90%{opacity:.25;}
+    100%{transform:translateY(-110vh) rotate(45deg);opacity:0;}
+  }
+
+  /* the letter card */
+  .stage{
+    position:relative;
+    z-index:1;
+    width:100%;
+    max-width:520px;
+  }
+  .card{
+    position:relative;
+    background:var(--paper);
+    border-radius:22px;
+    padding:44px 34px 38px;
+    box-shadow: 0 30px 60px -20px var(--shadow), 0 2px 0 rgba(255,255,255,0.6) inset;
+    text-align:center;
+    display:none;
+    animation:cardIn .55s cubic-bezier(.2,.8,.2,1);
+  }
+  .card.active{display:block;}
+  @keyframes cardIn{
+    from{opacity:0; transform:translateY(18px) scale(.98);}
+    to{opacity:1; transform:translateY(0) scale(1);}
+  }
+  /* washi tape decoration */
+  .tape{
+    position:absolute;
+    width:78px;height:26px;
+    top:-14px;
+    opacity:.85;
+    border-radius:2px;
+  }
+  .tape.left{left:-18px; background:var(--blush); transform:rotate(-14deg);}
+  .tape.right{right:-18px; background:var(--gold-light); transform:rotate(11deg);}
+
+  .eyebrow{
+    font-size:13px;
+    letter-spacing:.08em;
+    color:var(--rose-deep);
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  h2.title{
+    font-size:26px;
+    color:var(--plum);
+    margin:0 0 14px;
+    line-height:1.35;
+  }
+  p.body-text{
+    font-size:16.5px;
+    line-height:1.75;
+    color:var(--ink);
+    margin:0 0 10px;
+  }
+  .sub{
+    font-size:14.5px;
+    color:#8a6b7d;
+    margin-top:-4px;
+    margin-bottom:18px;
+  }
+
+  /* wax-seal style buttons — the signature interaction */
+  .seal-btn{
+    position:relative;
+    border:none;
+    cursor:pointer;
+    touch-action:manipulation;
+    font-family:'Baloo Da 2', sans-serif;
+    font-weight:700;
+    font-size:16px;
+    color:#fff;
+    padding:14px 30px;
+    min-height:48px;
+    border-radius:999px;
+    background:radial-gradient(circle at 30% 30%, var(--gold-light), var(--rose) 70%);
+    box-shadow: 0 10px 20px -8px rgba(217,83,111,0.55), inset 0 -3px 6px rgba(0,0,0,0.15), inset 0 2px 3px rgba(255,255,255,0.4);
+    transition: transform .15s ease;
+    margin:6px 8px;
+  }
+  .seal-btn:active{transform:scale(.93);}
+  .seal-btn.ghost{
+    background:transparent;
+    color:var(--rose-deep);
+    box-shadow:inset 0 0 0 2px var(--blush);
+  }
+  .seal-btn:disabled{opacity:.4;cursor:not-allowed;}
+  .stamp-ring{
+    position:absolute;
+    border-radius:50%;
+    border:2px solid var(--gold);
+    pointer-events:none;
+    animation:stampOut .55s ease-out forwards;
+  }
+  @keyframes stampOut{
+    from{width:10px;height:10px;opacity:.9;}
+    to{width:110px;height:110px;margin-left:-55px;margin-top:-55px;opacity:0;}
+  }
+
+  .btn-row{margin-top:6px;}
+
+  /* option buttons for MCQ */
+  .options{display:flex;flex-direction:column;gap:12px;margin-top:20px;}
+  .opt-btn{
+    font-family:'Hind Siliguri', sans-serif;
+    font-size:16.5px;
+    font-weight:500;
+    padding:14px 16px;
+    min-height:48px;
+    border-radius:14px;
+    border:2px solid var(--blush);
+    background:var(--paper);
+    color:var(--ink);
+    cursor:pointer;
+    touch-action:manipulation;
+    transition: all .2s ease;
+    text-align:left;
+  }
+  .opt-btn:hover{border-color:var(--rose); background:#fff6f3;}
+  .opt-btn.selected{
+    border-color:var(--rose-deep);
+    background:linear-gradient(120deg, var(--blush), #fff);
+    box-shadow: inset 0 0 0 1px var(--rose-deep);
+  }
+
+  textarea{
+    width:100%;
+    min-height:110px;
+    border-radius:14px;
+    border:2px solid var(--blush);
+    padding:14px;
+    font-family:'Hind Siliguri', sans-serif;
+    font-size:16px;
+    color:var(--ink);
+    resize:vertical;
+    margin-top:14px;
+    background:#fffdf9;
+    outline:none;
+  }
+  textarea:focus{border-color:var(--rose);}
+
+  /* progress stitches */
+  .progress{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-bottom:20px;
+  }
+  .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--blush);
+    transition: all .25s ease;
+  }
+  .dot.done{background:var(--rose);}
+  .dot.now{background:var(--rose); transform:scale(1.35);}
+
+  .reaction-emoji{
+    font-size:46px;
+    margin:14px 0 4px;
+    animation:pop .4s ease;
+    display:inline-block;
+  }
+  @keyframes pop{
+    0%{transform:scale(.3) rotate(-8deg); opacity:0;}
+    60%{transform:scale(1.15) rotate(4deg); opacity:1;}
+    100%{transform:scale(1) rotate(0);}
+  }
+  .shake{animation:shake .45s ease;}
+  @keyframes shake{
+    0%,100%{transform:translateX(0);}
+    20%{transform:translateX(-6px);}
+    40%{transform:translateX(6px);}
+    60%{transform:translateX(-4px);}
+    80%{transform:translateX(4px);}
+  }
+  .skip-link{
+    display:inline-block;
+    margin-top:14px;
+    padding:6px 4px;
+    font-size:13.5px;
+    color:#a2879a;
+    text-decoration:underline;
+    cursor:pointer;
+    touch-action:manipulation;
+    background:none;
+    border:none;
+  }
+
+  /* final screen */
+  .final-glow{
+    background: radial-gradient(circle at 50% 20%, rgba(233,200,117,0.35), transparent 55%), var(--paper);
+  }
+  .final-sig{
+    font-size:34px;
+    color:var(--rose-deep);
+    margin-top:10px;
+  }
+  .heart-big{
+    font-size:44px;
+    animation:beat 1.1s ease-in-out infinite;
+    display:inline-block;
+  }
+  @keyframes beat{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.18);}
+  }
+
+  .spinner{
+    width:34px;height:34px;
+    border-radius:50%;
+    border:4px solid var(--blush);
+    border-top-color:var(--rose);
+    margin:18px auto 0;
+    animation:spin .8s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  @media (max-width:480px){
+    body{padding:16px 10px calc(16px + env(safe-area-inset-bottom, 0px));}
+    .card{padding:32px 20px 26px; border-radius:18px;}
+    h2.title{font-size:21px;}
+    p.body-text{font-size:15.5px;}
+    .tape{width:56px; height:20px; top:-10px;}
+    .tape.left{left:-10px;}
+    .tape.right{right:-10px;}
+    .seal-btn{padding:13px 22px; font-size:15px; margin:5px 6px;}
+    .reaction-emoji{font-size:38px;}
+    .heart-big{font-size:36px;}
+    .final-sig{font-size:28px;}
+  }
+
+  @media (max-width:340px){
+    .card{padding:26px 16px 22px;}
+    h2.title{font-size:19px;}
+    .seal-btn{padding:12px 18px; font-size:14px;}
+    .opt-btn{font-size:15px; padding:12px 14px;}
+  }
+
+  @media (max-height:600px) and (orientation:landscape){
+    .card{padding:22px 24px;}
+    #heart-field{display:none;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .heart, .card, .reaction-emoji, .heart-big, .spinner{animation:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<div id="heart-field"></div>
+
+<div class="stage">
+
+  <!-- 0: Welcome -->
+  <section class="card active" data-screen="welcome">
+    <div class="tape left"></div><div class="tape right"></div>
+    <div class="eyebrow">A little letter for you</div>
+    <h2 class="title">Happy Birthday SETU 🎂</h2>
+    <p class="body-text">Today is your day — only yours. 💕</p>
+    <p class="body-text">Your smile and eyebrow is my favorite thing, you know that?</p>
+    <p class="body-text">Let's celebrate your birthday a little differently...</p>
+    <div class="btn-row">
+      <button class="seal-btn" onclick="handleSeal(this); goTo('giftAsk')">Let's start →</button>
+    </div>
+  </section>
+
+  <!-- 1: Gift accept (playful forced-yes) -->
+  <section class="card" data-screen="giftAsk">
+    <div class="tape left"></div><div class="tape right"></div>
+    <div class="eyebrow">Gift</div>
+    <h2 class="title">I have a gift for you...<br>you'll accept it picchi,right? 🎁</h2>
+    <div id="giftReaction"></div>
+    <div class="btn-row">
+      <button class="seal-btn" onclick="handleSeal(this); acceptGift()">Yes 💖</button>
+      <button class="seal-btn ghost" onclick="declineGift(this)">No</button>
+    </div>
+    <div id="giftSkip"></div>
+  </section>
+
+  <!-- 2: thanks (brief) -->
+  <section class="card" data-screen="giftThanks">
+    <div class="tape left"></div><div class="tape right"></div>
+    <div class="reaction-emoji">:love:</div>
+    <h2 class="title">Thank you!</h2>
+    <p class="body-text">Knew you couldn't say no 😌</p>
+  </section>
+
+  <!-- 3: MCQ 1 -->
+  <section class="card" data-screen="mcq1">
+    <div class="tape left"></div><div class="tape right"></div>
+    <div class="progress" id="progress-q">
+      <span class="dot now"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </div>
+    <div class="eyebrow">Question 1</div>
+    <h2 class="title">Bolo Picchi, what gift will you take?</h2>
+    <div class="options">
+      <button class="opt-btn" onclick="selectMCQ(this,'giftChoice','Saree','mcq2')">1. Saree</button>
+      <button class="opt-btn" onclick="selectMCQ(this,'giftChoice','Burqa','mcq2')">2. Borkha</button>
+      <button class="opt-btn" onclick="selectMCQ(this,'giftChoice','Three-piece','mcq2')">3. Three-piece</button>
+    </div>
+  </section>
+
+  <!-- 4: MCQ 2 -->
+  <section class="card" data-screen="mcq2">
+    <div class="tape left"></div><div class="tape right"></div>
+    <div class="progress">
+      <span class="dot done"></span><span class="dot now"></span><span class="dot"></span><span class="dot"></span>
+    </div>
+    <div class="eyebrow">Question 2</div>
+    <h2 class="title">Akhon Bolo, what's your Ajaira Shokh?</h2>
+    <div class="options">
+      <button class="opt-btn" onclick="selectMCQ(this,'hobby','Nail polish','mcq3')">1. Nail polish</button>
+      <button class="opt-btn" onclick="selectMCQ(this,'hobby','Bags & shoes','mcq3')">2. Bags & shoes</button>
+      <button class="opt-btn" onclick="selectMCQ(this,'hobby','Makeup & sunscreen','mcq3')">3. Makeup & sunscreen</button>
+    </div>
+  </section>
+
+  <!-- 5: MCQ 3 -->
+  <section class="card" data-screen="mcq3">
+    <div class="tape left"></div><div class="tape right"></div>
+    <div class="progress">
+      <span class="dot done"></span><span class="dot done"></span><span class="dot now"></span><span class="dot"></span>
+    </div>
+    <div class="eyebrow">Question 3</div>
+    <h2 class="title">Khaba ki?Ajke ja khaite chaiba tai</h2>
+    <div class="options">
+      <button class="opt-btn" onclick="selectMCQ(this,'food','Biryani','goOut')">1. Biryani</button>
+      <button class="opt-btn" onclick="selectMCQ(this,'food','Pizza','goOut')">2. Pizza</button>
+      <button class="opt-btn" onclick="selectMCQ(this,'food','Ice cream','goOut')">3. Ice cream</button>
+    </div>
+  </section>
+
+  <!-- 6: go out -->
+  <section class="card" data-screen="goOut">
+    <div class="tape left"></div><div class="tape right"></div>
+    <div class="progress">
+      <span class="dot done"></span><span class="dot done"></span><span class="dot done"></span><span class="dot now"></span>
+    </div>
+    <div class="eyebrow">Question 4</div>
+    <h2 class="title">Ghurte Jaba? Barir Konay pore na theke! 🌇</h2>
+    <div id="goOutReaction"></div>
+    <div class="btn-row">
+      <button class="seal-btn" onclick="handleSeal(this); goOutYes()">Yes 🥳</button>
+      <button class="seal-btn ghost" onclick="goOutNo(this)">No</button>
+    </div>
+    <div id="goOutSkip"></div>
+  </section>
+
+  <!-- 7: text q1 -->
+  <section class="card" data-screen="text1">
+    <div class="tape left"></div><div class="tape right"></div>
+    <div class="eyebrow">Akhon Agula sob sotti bolba!PLZ</div>
+    <h2 class="title">How do you feel about me? & Ami kemon?</h2>
+    <p class="sub">Tell me in detail, be totally honest plz 🙂</p>
+    <textarea id="q1" placeholder="Write what's on your mind here..."></textarea>
+    <div class="btn-row">
+      <button class="seal-btn" id="q1btn" disabled onclick="handleSeal(this); saveText('q1','text2')">Next question →</button>
+    </div>
+  </section>
+
+  <!-- 8: text q2 -->
+  <section class="card" data-screen="text2">
+    <div class="tape left"></div><div class="tape right"></div>
+    <div class="eyebrow">Question 2</div>
+    <h2 class="title">Amar kon habit ta tomar valo lage na?</h2>
+    <p class="sub">Be honest, Ami kisu mone korbo na.Change korar Try korbo. 😅</p>
+    <textarea id="q2" placeholder="Go ahead, write it..."></textarea>
+    <div class="btn-row">
+      <button class="seal-btn" id="q2btn" disabled onclick="handleSeal(this); saveText('q2','text3')">Next question →</button>
+    </div>
+  </section>
+
+  <!-- 9: text q3 -->
+  <section class="card" data-screen="text3">
+    <div class="tape left"></div><div class="tape right"></div>
+    <div class="eyebrow">Last question</div>
+    <h2 class="title">Ami ki korle tmi khusi hoba?jekono kaj!</h2>
+    <p class="sub">Ja tomar mone ashe bolo jate tmi khusi how ✨</p>l2
+    <textarea id="q3" placeholder="Write a little something for me..."></textarea>
+    <div class="btn-row">
+      <button class="seal-btn" id="q3btn" disabled onclick="handleSeal(this); submitAll()">Submit 💌</button>
+    </div>
+  </section>
+
+  <!-- 10: submitting -->
+  <section class="card" data-screen="submitting">
+    <p class="body-text">Sending your letter...</p>
+    <div class="spinner"></div>
+  </section>
+
+  <!-- 11: final -->
+  <section class="card final-glow" data-screen="final">
+    <div class="tape left"></div><div class="tape right"></div>
+    <span class="heart-big">❤️</span>
+    <h2 class="title">I love you so much</h2>
+    <p class="body-text">Thank you so much for staying beside someone like me.</p>
+    <p class="body-text">I just want you to always be this happy. 🎉</p>
+    <p class="body-text">Amar moto karo pashe thakar jonno sotti onek dhonnobad.</p>
+    <div class="final-sig signature-font">— FAHIM</div>
+  </section>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.2/confetti.browser.min.js"></script>
+
+<!-- Firebase Modular SDKs -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCWyIgVssGQIav8fVmHY7Wl_qYvUvwJK6s",
+    authDomain: "birthday-12df4.firebaseapp.com",
+    projectId: "birthday-12df4",
+    storageBucket: "birthday-12df4.firebasestorage.app",
+    messagingSenderId: "220389345590",
+    appId: "1:220389345590:web:6a7e1a02a7ac93a4ba0b97",
+    measurementId: "G-LKPT4NWTQK"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const RECIPIENT_NAME = "";
+
+  const answers = {
+    giftAccept: "", giftChoice: "", hobby: "", food: "",
+    wantsToGoOut: "", q1: "", q2: "", q3: ""
+  };
+
+  let giftNoCount = 0;
+  const giftReplies = [
+    "😢 Mukher Upore na?...",
+    "🥺 Please, think again? Nitei Hobe Kisu",
+    "😤 Huh, still no?!",
+    "🙃 Okay fine, just think a little and say yes"
+  ];
+
+  window.showScreen = function(id){
+    document.querySelectorAll('.card').forEach(c=>c.classList.remove('active'));
+    const el = document.querySelector(`.card[data-screen="${id}"]`);
+    if(el) el.classList.add('active');
+  };
+
+  window.goTo = function(id){ showScreen(id); };
+
+  window.handleSeal = function(btn){
+    const ring = document.createElement('span');
+    ring.className = 'stamp-ring';
+    const rect = btn.getBoundingClientRect();
+    ring.style.left = (rect.width/2) + 'px';
+    ring.style.top = (rect.height/2) + 'px';
+    btn.style.position = 'relative';
+    btn.appendChild(ring);
+    setTimeout(()=>ring.remove(), 600);
+  };
+
+  /* --- gift accept --- */
+  window.acceptGift = function(){
+    answers.giftAccept = "Yes";
+    showScreen('giftThanks');
+    setTimeout(()=>showScreen('mcq1'), 1400);
+  };
+
+  window.declineGift = function(btn){
+    giftNoCount++;
+    const msg = giftReplies[Math.min(giftNoCount-1, giftReplies.length-1)];
+    document.getElementById('giftReaction').innerHTML = `<div class="reaction-emoji">😢</div><p class="sub">${msg}</p>`;
+    document.querySelector('[data-screen="giftAsk"]').classList.add('shake');
+    setTimeout(()=>document.querySelector('[data-screen="giftAsk"]').classList.remove('shake'), 450);
+  };
+
+  /* --- MCQ handling --- */
+  window.selectMCQ = function(btn, key, value, nextScreen){
+    const group = btn.parentElement.querySelectorAll('.opt-btn');
+    group.forEach(b=>b.classList.remove('selected'));
+    btn.classList.add('selected');
+    answers[key] = value;
+    setTimeout(()=>showScreen(nextScreen), 420);
+  };
+
+  /* --- go out question --- */
+  window.goOutYes = function(){
+    answers.wantsToGoOut = "Yes";
+    document.getElementById('goOutReaction').innerHTML = `<div class="reaction-emoji">🥳🎉</div>`;
+    burstConfetti();
+    setTimeout(()=>showScreen('text1'), 1100);
+  };
+
+  window.goOutNo = function(btn){
+    answers.wantsToGoOut = "No (but I'm asking again)";
+    document.getElementById('goOutReaction').innerHTML = `<div class="reaction-emoji">🥺</div><p class="sub">Please come na... time with you would be so special 🌸</p>`;
+    document.querySelector('[data-screen="goOut"]').classList.add('shake');
+    setTimeout(()=>document.querySelector('[data-screen="goOut"]').classList.remove('shake'), 450);
+    if(!document.getElementById('goOutSkip').innerHTML){
+      document.getElementById('goOutSkip').innerHTML =
+        `<button class="skip-link" onclick="showScreen('text1')">Okay, let's go to the next question →</button>`;
+    }
+  };
+
+  /* --- text inputs --- */
+  ['q1','q2','q3'].forEach(id=>{
+    const ta = document.getElementById(id);
+    const btn = document.getElementById(id+'btn');
+    if(ta && btn){
+      ta.addEventListener('input', ()=>{ btn.disabled = ta.value.trim().length === 0; });
+    }
+  });
+
+  window.saveText = function(key, next){
+    answers[key] = document.getElementById(key).value.trim();
+    showScreen(next);
+  };
+
+  /* --- submit to Firebase --- */
+  window.submitAll = async function(){
+    answers.q3 = document.getElementById('q3').value.trim();
+    showScreen('submitting');
+
+    const payload = { 
+      ...answers, 
+      name: RECIPIENT_NAME,
+      submittedAt: serverTimestamp() 
+    };
+
+    try {
+      await addDoc(collection(db, "responses"), payload);
+    } catch (e) {
+      console.error("Error saving response to Firebase: ", e);
+    } finally {
+      showScreen('final');
+      burstConfetti(true);
+    }
+  };
+
+  /* --- confetti --- */
+  function burstConfetti(big){
+    if(typeof confetti !== 'function') return;
+    confetti({
+      particleCount: big ? 140 : 60,
+      spread: big ? 100 : 60,
+      origin: { y: 0.6 },
+      colors: ['#D9536F','#E9C875','#F4C9CE','#B23A54']
+    });
+    if(big){
+      setTimeout(()=>confetti({particleCount:100, spread:120, origin:{y:0.4}, colors:['#D9536F','#E9C875','#F4C9CE']}), 350);
+    }
+  }
+
+  /* --- ambient hearts --- */
+  (function initHearts(){
+    const field = document.getElementById('heart-field');
+    const total = 14;
+    for(let i=0;i<total;i++){
+      const h = document.createElement('span');
+      h.className = 'heart' + (i % 3 === 0 ? ' gold' : '');
+      h.style.left = Math.random()*100 + 'vw';
+      h.style.animationDuration = (10 + Math.random()*10) + 's';
+      h.style.animationDelay = (Math.random()*12) + 's';
+      h.style.transform = `scale(${0.6 + Math.random()*0.9}) rotate(45deg)`;
+      field.appendChild(h);
+    }
+  })();
+</script>
+</body>
+</html>
