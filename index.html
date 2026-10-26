@@ -1,635 +1,1106 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday 💌</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --cream:#FBF1E6;
-    --paper:#FFFBF5;
-    --blush:#F4C9CE;
-    --rose:#D9536F;
-    --rose-deep:#B23A54;
-    --plum:#3E2140;
-    --ink:#4A2A3E;
-    --gold:#CB9A3C;
-    --gold-light:#E9C875;
-    --shadow: rgba(62,33,64,0.18);
-  }
-  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
-  html,body{margin:0;padding:0;}
-  body{
-    min-height:100vh;
-    min-height:100dvh;
-    background:
-      radial-gradient(circle at 15% 20%, rgba(233,200,117,0.25), transparent 45%),
-      radial-gradient(circle at 85% 80%, rgba(217,83,111,0.18), transparent 50%),
-      var(--cream);
-    font-family:'Hind Siliguri', sans-serif;
-    color:var(--ink);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow-x:hidden;
-    position:relative;
-    padding:24px 14px calc(24px + env(safe-area-inset-bottom, 0px));
-  }
-  h1,h2,h3,.display{font-family:'Baloo Da 2', sans-serif;}
-  .signature-font{font-family:'Caveat', cursive;}
+  <meta charset="utf-8" />
+  <meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport" />
+  <meta content="#ffd4ed" name="theme-color" />
+  <title>Happy Birthday Mayeshah APU 💗</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
 
-  /* ambient drifting hearts */
-  #heart-field{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0;}
-  .heart{
-    position:absolute;
-    bottom:-40px;
-    width:14px;height:14px;
-    background:var(--rose);
-    opacity:.28;
-    transform:rotate(45deg);
-    animation:drift linear infinite;
-    border-radius:2px;
-  }
-  .heart::before,.heart::after{
-    content:"";
-    position:absolute;
-    width:14px;height:14px;
-    background:inherit;
-    border-radius:50%;
-  }
-  .heart::before{left:-7px;top:0;}
-  .heart::after{left:0;top:-7px;}
-  .heart.gold{background:var(--gold-light);}
-  @keyframes drift{
-    0%{transform:translateY(0) rotate(45deg);opacity:0;}
-    10%{opacity:.35;}
-    90%{opacity:.25;}
-    100%{transform:translateY(-110vh) rotate(45deg);opacity:0;}
-  }
+    * {
+      box-sizing: border-box
+    }
 
-  /* the letter card */
-  .stage{
-    position:relative;
-    z-index:1;
-    width:100%;
-    max-width:520px;
-  }
-  .card{
-    position:relative;
-    background:var(--paper);
-    border-radius:22px;
-    padding:44px 34px 38px;
-    box-shadow: 0 30px 60px -20px var(--shadow), 0 2px 0 rgba(255,255,255,0.6) inset;
-    text-align:center;
-    display:none;
-    animation:cardIn .55s cubic-bezier(.2,.8,.2,1);
-  }
-  .card.active{display:block;}
-  @keyframes cardIn{
-    from{opacity:0; transform:translateY(18px) scale(.98);}
-    to{opacity:1; transform:translateY(0) scale(1);}
-  }
-  /* washi tape decoration */
-  .tape{
-    position:absolute;
-    width:78px;height:26px;
-    top:-14px;
-    opacity:.85;
-    border-radius:2px;
-  }
-  .tape.left{left:-18px; background:var(--blush); transform:rotate(-14deg);}
-  .tape.right{right:-18px; background:var(--gold-light); transform:rotate(11deg);}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: #6b347a;
+      font-family: "DM Sans", sans-serif;
+      background: linear-gradient(145deg, #ffe4f1, #f0ddff 52%, #dcdcff);
+      overflow-x: hidden
+    }
 
-  .eyebrow{
-    font-size:13px;
-    letter-spacing:.08em;
-    color:var(--rose-deep);
-    font-weight:600;
-    margin-bottom:6px;
-  }
-  h2.title{
-    font-size:26px;
-    color:var(--plum);
-    margin:0 0 14px;
-    line-height:1.35;
-  }
-  p.body-text{
-    font-size:16.5px;
-    line-height:1.75;
-    color:var(--ink);
-    margin:0 0 10px;
-  }
-  .sub{
-    font-size:14.5px;
-    color:#8a6b7d;
-    margin-top:-4px;
-    margin-bottom:18px;
-  }
+    body:before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 15% 15%, white 0 2px, transparent 3px), radial-gradient(circle at 82% 28%, white 0 2px, transparent 3px);
+      background-size: 85px 95px, 110px 130px;
+      opacity: .7;
+      animation: twinkle 3s infinite alternate
+    }
 
-  /* wax-seal style buttons — the signature interaction */
-  .seal-btn{
-    position:relative;
-    border:none;
-    cursor:pointer;
-    touch-action:manipulation;
-    font-family:'Baloo Da 2', sans-serif;
-    font-weight:700;
-    font-size:16px;
-    color:#fff;
-    padding:14px 30px;
-    min-height:48px;
-    border-radius:999px;
-    background:radial-gradient(circle at 30% 30%, var(--gold-light), var(--rose) 70%);
-    box-shadow: 0 10px 20px -8px rgba(217,83,111,0.55), inset 0 -3px 6px rgba(0,0,0,0.15), inset 0 2px 3px rgba(255,255,255,0.4);
-    transition: transform .15s ease;
-    margin:6px 8px;
-  }
-  .seal-btn:active{transform:scale(.93);}
-  .seal-btn.ghost{
-    background:transparent;
-    color:var(--rose-deep);
-    box-shadow:inset 0 0 0 2px var(--blush);
-  }
-  .seal-btn:disabled{opacity:.4;cursor:not-allowed;}
-  .stamp-ring{
-    position:absolute;
-    border-radius:50%;
-    border:2px solid var(--gold);
-    pointer-events:none;
-    animation:stampOut .55s ease-out forwards;
-  }
-  @keyframes stampOut{
-    from{width:10px;height:10px;opacity:.9;}
-    to{width:110px;height:110px;margin-left:-55px;margin-top:-55px;opacity:0;}
-  }
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 8%;
+      z-index: 5;
+      background: linear-gradient(90deg, #ff59ad, #9877ff);
+      transition: width .4s
+    }
 
-  .btn-row{margin-top:6px;}
+    .app {
+      position: relative;
+      z-index: 1;
+      width: min(540px, calc(100% - 20px));
+      min-height: calc(100dvh - 35px);
+      margin: 12px auto;
+      display: flex;
+      align-items: center
+    }
 
-  /* option buttons for MCQ */
-  .options{display:flex;flex-direction:column;gap:12px;margin-top:20px;}
-  .opt-btn{
-    font-family:'Hind Siliguri', sans-serif;
-    font-size:16.5px;
-    font-weight:500;
-    padding:14px 16px;
-    min-height:48px;
-    border-radius:14px;
-    border:2px solid var(--blush);
-    background:var(--paper);
-    color:var(--ink);
-    cursor:pointer;
-    touch-action:manipulation;
-    transition: all .2s ease;
-    text-align:left;
-  }
-  .opt-btn:hover{border-color:var(--rose); background:#fff6f3;}
-  .opt-btn.selected{
-    border-color:var(--rose-deep);
-    background:linear-gradient(120deg, var(--blush), #fff);
-    box-shadow: inset 0 0 0 1px var(--rose-deep);
-  }
+    .page {
+      display: none;
+      width: 100%;
+      padding: clamp(22px, 6vw, 36px) clamp(16px, 5vw, 30px);
+      text-align: center;
+      border: 1px solid #ffffffc9;
+      border-radius: 28px;
+      background: linear-gradient(145deg, #fffaf0eb, #fff0fae8);
+      box-shadow: 0 22px 60px #9c5db42e, inset 0 1px white;
+      backdrop-filter: blur(12px);
+      animation: in .4s ease
+    }
 
-  textarea{
-    width:100%;
-    min-height:110px;
-    border-radius:14px;
-    border:2px solid var(--blush);
-    padding:14px;
-    font-family:'Hind Siliguri', sans-serif;
-    font-size:16px;
-    color:var(--ink);
-    resize:vertical;
-    margin-top:14px;
-    background:#fffdf9;
-    outline:none;
-  }
-  textarea:focus{border-color:var(--rose);}
+    .page.active {
+      display: flex;
+      flex-direction: column;
+      align-items: center
+    }
 
-  /* progress stitches */
-  .progress{
-    display:flex;
-    justify-content:center;
-    gap:8px;
-    margin-bottom:20px;
-  }
-  .dot{
-    width:8px;height:8px;border-radius:50%;
-    background:var(--blush);
-    transition: all .25s ease;
-  }
-  .dot.done{background:var(--rose);}
-  .dot.now{background:var(--rose); transform:scale(1.35);}
+    .tag {
+      font-size: .65rem;
+      letter-spacing: .14em;
+      font-weight: 700;
+      color: #a45a9f;
+      text-transform: uppercase;
+      margin: 0 0 14px
+    }
 
-  .reaction-emoji{
-    font-size:46px;
-    margin:14px 0 4px;
-    animation:pop .4s ease;
-    display:inline-block;
-  }
-  @keyframes pop{
-    0%{transform:scale(.3) rotate(-8deg); opacity:0;}
-    60%{transform:scale(1.15) rotate(4deg); opacity:1;}
-    100%{transform:scale(1) rotate(0);}
-  }
-  .shake{animation:shake .45s ease;}
-  @keyframes shake{
-    0%,100%{transform:translateX(0);}
-    20%{transform:translateX(-6px);}
-    40%{transform:translateX(6px);}
-    60%{transform:translateX(-4px);}
-    80%{transform:translateX(4px);}
-  }
-  .skip-link{
-    display:inline-block;
-    margin-top:14px;
-    padding:6px 4px;
-    font-size:13.5px;
-    color:#a2879a;
-    text-decoration:underline;
-    cursor:pointer;
-    touch-action:manipulation;
-    background:none;
-    border:none;
-  }
+    h1,
+    h2 {
+      font-family: "Playfair Display", "Hind Siliguri", "Noto Sans Bengali", "Nirmala UI", "Vrinda", Georgia, serif;
+      line-height: 1.1;
+      letter-spacing: -.03em;
+      margin: 0;
+      color: #752f83
+    }
 
-  /* final screen */
-  .final-glow{
-    background: radial-gradient(circle at 50% 20%, rgba(233,200,117,0.35), transparent 55%), var(--paper);
-  }
-  .final-sig{
-    font-size:34px;
-    color:var(--rose-deep);
-    margin-top:10px;
-  }
-  .heart-big{
-    font-size:44px;
-    animation:beat 1.1s ease-in-out infinite;
-    display:inline-block;
-  }
-  @keyframes beat{
-    0%,100%{transform:scale(1);}
-    50%{transform:scale(1.18);}
-  }
+    h1 {
+      font-size: clamp(2.6rem, 10vw, 4rem)
+    }
 
-  .spinner{
-    width:34px;height:34px;
-    border-radius:50%;
-    border:4px solid var(--blush);
-    border-top-color:var(--rose);
-    margin:18px auto 0;
-    animation:spin .8s linear infinite;
-  }
-  @keyframes spin{to{transform:rotate(360deg);}}
+    h2 {
+      font-size: clamp(2.1rem, 8vw, 3rem)
+    }
 
-  @media (max-width:480px){
-    body{padding:16px 10px calc(16px + env(safe-area-inset-bottom, 0px));}
-    .card{padding:32px 20px 26px; border-radius:18px;}
-    h2.title{font-size:21px;}
-    p.body-text{font-size:15.5px;}
-    .tape{width:56px; height:20px; top:-10px;}
-    .tape.left{left:-10px;}
-    .tape.right{right:-10px;}
-    .seal-btn{padding:13px 22px; font-size:15px; margin:5px 6px;}
-    .reaction-emoji{font-size:38px;}
-    .heart-big{font-size:36px;}
-    .final-sig{font-size:28px;}
-  }
+    h1 span,
+    h2 span {
+      color: #f04d9c
+    }
 
-  @media (max-width:340px){
-    .card{padding:26px 16px 22px;}
-    h2.title{font-size:19px;}
-    .seal-btn{padding:12px 18px; font-size:14px;}
-    .opt-btn{font-size:15px; padding:12px 14px;}
-  }
+    .lead {
+      color: #815c87;
+      line-height: 1.75;
+      font-size: .9rem;
+      max-width: 390px;
+      margin: 17px auto 22px
+    }
 
-  @media (max-height:600px) and (orientation:landscape){
-    .card{padding:22px 24px;}
-    #heart-field{display:none;}
-  }
+    .art {
+      height: 130px;
+      display: grid;
+      place-items: center;
+      font-size: 5.5rem;
+      filter: drop-shadow(0 9px 13px #e05da644);
+      animation: float 3s infinite ease-in-out
+    }
 
-  @media (prefers-reduced-motion: reduce){
-    .heart, .card, .reaction-emoji, .heart-big, .spinner{animation:none !important;}
-  }
-</style>
+    .btn {
+      border: 0;
+      width: 100%;
+      max-width: 340px;
+      min-height: 51px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      font: 700 .95rem "DM Sans", sans-serif;
+      cursor: pointer;
+      transition: .18s
+    }
+
+    .btn:active,
+    .choice:active {
+      transform: scale(.98)
+    }
+
+    .primary {
+      color: white;
+      background: linear-gradient(100deg, #ff58a5, #b44fe0);
+      box-shadow: 0 9px 22px #ec58aa4d
+    }
+
+    .secondary {
+      color: #833d91;
+      background: #fff9;
+      border: 1px solid #e9b6e7
+    }
+
+    .stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: 100%
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 9px;
+      width: 100%;
+      margin: 8px 0
+    }
+
+    .choices.two {
+      grid-template-columns: 1fr 1fr
+    }
+
+    .choice {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+      width: 100%;
+      min-height: 64px;
+      padding: 11px 13px;
+      border: 1px solid #eebfe7;
+      border-radius: 15px;
+      background: linear-gradient(100deg, #fffdf5, #ffeffa);
+      color: #74387f;
+      font: 600 .86rem "DM Sans", sans-serif;
+      cursor: pointer;
+      transition: .2s
+    }
+
+    .two .choice {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 100px;
+      position: relative
+    }
+
+    .emoji {
+      font-size: 1.8rem;
+      width: 42px;
+      text-align: center
+    }
+
+    .label {
+      flex: 1
+    }
+
+    .two .label {
+      font-size: .79rem
+    }
+
+    .selected {
+      outline: 2px solid #f875bd;
+      background: #ffe4f5 !important
+    }
+
+    .small {
+      font-size: .76rem;
+      color: #a06e9e;
+      margin: 12px 0 0;
+      min-height: 18px
+    }
+
+    .field {
+      width: 100%;
+      border: 1px solid #e8b9e5;
+      border-radius: 14px;
+      background: #fffdfb;
+      color: #693675;
+      padding: 13px;
+      font: inherit;
+      font-size: .9rem;
+      resize: vertical
+    }
+
+    .field-label {
+      display: block;
+      text-align: left;
+      font-size: .8rem;
+      font-weight: 700;
+      margin: 12px 0 7px
+    }
+
+    .letter {
+      padding: 20px;
+      text-align: left;
+      background: #fffdf4;
+      border: 1px solid #f0d1e9;
+      border-radius: 18px;
+      margin: 18px 0;
+      color: #785a7c;
+      font-size: .87rem;
+      line-height: 1.8
+    }
+
+    .letter p {
+      margin: 0 0 12px
+    }
+
+    .dear,
+    .signoff {
+      color: #df4b9a;
+      font-weight: 700
+    }
+
+    .cake {
+      font-size: 5rem;
+      margin: 15px;
+      animation: float 3s infinite
+    }
+
+    .summary {
+      width: 100%;
+      background: #fff9;
+      border: 1px solid #efc7e8;
+      border-radius: 15px;
+      padding: 13px;
+      text-align: left;
+      font-size: .81rem;
+      margin: 5px 0 18px
+    }
+
+    .summary div {
+      margin: 5px 0
+    }
+
+    .summary b {
+      color: #e34b9a
+    }
+
+    .floaties {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0
+    }
+
+    .floaty {
+      position: absolute;
+      bottom: -40px;
+      color: #f35da8;
+      animation: rise linear infinite;
+      opacity: .55
+    }
+
+    .confetti {
+      position: fixed;
+      top: -20px;
+      z-index: 9;
+      pointer-events: none;
+      animation: fall var(--t) linear forwards
+    }
+
+    @keyframes in {
+      from {
+        opacity: 0;
+        transform: translateY(12px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    @keyframes float {
+      50% {
+        transform: translateY(-9px) rotate(3deg)
+      }
+    }
+
+    @keyframes rise {
+      to {
+        transform: translateY(-110vh) rotate(35deg);
+        opacity: 0
+      }
+    }
+
+    @keyframes twinkle {
+      to {
+        opacity: .3
+      }
+    }
+
+    @keyframes fall {
+      to {
+        transform: translate(var(--d), 110vh) rotate(650deg);
+        opacity: 0
+      }
+    }
+
+    footer {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      padding: 0 8px 12px;
+      font-size: .6rem;
+      letter-spacing: .16em;
+      color: #9e65a2
+    }
+
+    footer b {
+      color: #f34c9f
+    }
+
+    @media(max-width:380px) {
+      .app {
+        width: calc(100% - 14px)
+      }
+
+      .page {
+        padding: 20px 14px;
+        border-radius: 23px
+      }
+
+      .art {
+        height: 110px;
+        font-size: 4.8rem
+      }
+
+      .lead {
+        font-size: .85rem
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      * {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important
+      }
+    }
+
+    /* Mobile-first comfort + Bengali typography */
+    :root {
+      color-scheme: light
+    }
+
+    html {
+      min-height: 100%;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      scroll-behavior: smooth
+    }
+
+    body {
+      min-height: 100svh;
+      min-height: 100dvh;
+      font-family: "DM Sans", "Hind Siliguri", "Noto Sans Bengali", "Nirmala UI", "Vrinda", sans-serif;
+      overflow-wrap: anywhere
+    }
+
+    .app {
+      width: min(560px, calc(100% - 24px));
+      min-width: 0;
+      min-height: calc(100svh - 18px);
+      min-height: calc(100dvh - 18px);
+      margin: 0 auto;
+      padding-top: max(18px, env(safe-area-inset-top));
+      padding-bottom: max(18px, env(safe-area-inset-bottom));
+    }
+
+    .page {
+      min-width: 0;
+      padding: clamp(18px, 5vw, 32px) clamp(14px, 4.5vw, 28px);
+      border-radius: clamp(20px, 5vw, 28px);
+      overflow-wrap: anywhere
+    }
+
+    .page.active {
+      width: 100%
+    }
+
+    .btn,
+    .choice {
+      min-width: 0;
+      min-height: 52px;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      line-height: 1.45;
+      overflow-wrap: anywhere
+    }
+
+    .btn {
+      font-size: 1rem;
+      padding: 14px 18px
+    }
+
+    .choice {
+      font-size: .95rem;
+      padding: 12px 13px
+    }
+
+    .label {
+      min-width: 0;
+      overflow-wrap: anywhere
+    }
+
+    .field {
+      font-family: "DM Sans", "Hind Siliguri", "Noto Sans Bengali", "Nirmala UI", "Vrinda", sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      min-height: 50px;
+      max-width: 100%;
+    }
+
+    textarea.field {
+      min-height: 110px
+    }
+
+    .field-label {
+      font-size: .92rem;
+      line-height: 1.5
+    }
+
+    .lead {
+      font-size: clamp(.94rem, 2.5vw, 1rem);
+      line-height: 1.85
+    }
+
+    .small {
+      font-size: .82rem;
+      line-height: 1.6
+    }
+
+    button:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid #a866e8;
+      outline-offset: 3px
+    }
+
+    @media(max-width:420px) {
+      .app {
+        width: calc(100% - 16px);
+        min-height: calc(100svh - 12px);
+        min-height: calc(100dvh - 12px);
+        padding-top: max(12px, env(safe-area-inset-top))
+      }
+
+      .page {
+        padding: 19px 14px;
+        margin: 0;
+        border-radius: 22px
+      }
+
+      .art {
+        height: 96px;
+        font-size: 4.5rem
+      }
+
+      h1 {
+        font-size: clamp(2.2rem, 12vw, 3.15rem)
+      }
+
+      h2 {
+        font-size: clamp(1.8rem, 9vw, 2.45rem)
+      }
+
+      .choices.two {
+        grid-template-columns: 1fr
+      }
+
+      .two .choice {
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 58px
+      }
+
+      .two .label {
+        font-size: .94rem
+      }
+
+      .emoji {
+        flex: 0 0 38px;
+        font-size: 1.6rem
+      }
+
+      .btn {
+        max-width: none;
+        width: 100%
+      }
+
+      .lead {
+        margin: 14px auto 18px
+      }
+    }
+
+    @media(max-width:340px) {
+      .page {
+        padding: 17px 11px
+      }
+
+      .choice {
+        gap: 8px;
+        padding: 11px 9px;
+        font-size: .88rem
+      }
+
+      .emoji {
+        flex-basis: 32px;
+        font-size: 1.45rem
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      html {
+        scroll-behavior: auto
+      }
+    }
+
+    /* Refined layout, accessible controls, and Bengali-script fallback (no language switch) */
+    :root {
+      color-scheme: light;
+      --pink: #ff58a5;
+      --violet: #b44fe0;
+      --text: #6b347a
+    }
+
+    html {
+      scroll-padding-top: 12px;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%
+    }
+
+    body {
+      background: radial-gradient(ellipse at 12% 0%, #fff8fc 0%, transparent 35%), linear-gradient(145deg, #ffe4f1 0%, #f0ddff 52%, #dcdcff 100%)
+    }
+
+    .progress {
+      height: 5px;
+      box-shadow: 0 2px 10px #c95bd455
+    }
+
+    .app {
+      max-width: 560px
+    }
+
+    .page {
+      background: linear-gradient(145deg, rgba(255, 253, 247, .96), rgba(255, 240, 250, .95));
+      border: 1px solid rgba(255, 255, 255, .92);
+      box-shadow: 0 24px 70px rgba(129, 64, 150, .16), 0 5px 18px rgba(213, 104, 177, .09), inset 0 1px 0 #fff;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px)
+    }
+
+    h1,
+    h2 {
+      overflow-wrap: anywhere;
+      text-wrap: balance
+    }
+
+    .tag {
+      line-height: 1.6
+    }
+
+    .btn,
+    .choice {
+      box-shadow: 0 4px 0 rgba(125, 52, 132, .06);
+      font-family: "DM Sans", "Hind Siliguri", "Noto Sans Bengali", "Nirmala UI", "Vrinda", sans-serif;
+      letter-spacing: normal
+    }
+
+    .btn {
+      border: 1px solid rgba(255, 255, 255, .62);
+      box-shadow: 0 8px 18px rgba(196, 71, 163, .14), inset 0 1px rgba(255, 255, 255, .4)
+    }
+
+    .primary {
+      background: linear-gradient(110deg, #ff579f 0%, #d34fca 50%, #9d64e8 100%);
+      box-shadow: 0 9px 20px rgba(199, 66, 161, .27), inset 0 1px rgba(255, 255, 255, .38)
+    }
+
+    .secondary {
+      box-shadow: 0 5px 14px rgba(143, 65, 150, .08), inset 0 1px #fff
+    }
+
+    .choice {
+      border-color: #efc3e8;
+      background: linear-gradient(145deg, #fffefa, #fff0fa);
+      box-shadow: 0 5px 12px rgba(135, 67, 151, .06), inset 0 1px #fff;
+      line-height: 1.55
+    }
+
+    .choice:hover {
+      border-color: #e995d2;
+      transform: translateY(-1px);
+      box-shadow: 0 9px 20px rgba(196, 71, 163, .12), inset 0 1px #fff
+    }
+
+    .choice.selected {
+      outline: 2px solid #f875bd;
+      outline-offset: 1px;
+      background: linear-gradient(145deg, #ffeafa, #fff0fa) !important;
+      box-shadow: 0 7px 16px rgba(235, 90, 171, .15)
+    }
+
+    .btn:hover {
+      filter: saturate(1.05) brightness(1.015);
+      transform: translateY(-1px)
+    }
+
+    .btn:active,
+    .choice:active {
+      transform: scale(.985) translateY(1px)
+    }
+
+    .field {
+      border: 1px solid #e8b9e5;
+      box-shadow: inset 0 2px 5px rgba(110, 55, 126, .04);
+      font-variant-ligatures: none
+    }
+
+    .field:focus {
+      outline: 0;
+      border-color: #c875dc;
+      box-shadow: 0 0 0 4px rgba(196, 105, 219, .13)
+    }
+
+    .field::placeholder {
+      color: #b38aaf;
+      opacity: 1
+    }
+
+    .field-label {
+      color: #794486
+    }
+
+    .letter {
+      box-shadow: 0 7px 18px rgba(150, 85, 137, .07);
+      overflow-wrap: anywhere
+    }
+
+    .summary {
+      overflow-wrap: anywhere;
+      line-height: 1.65
+    }
+
+    .summary div {
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(221, 165, 213, .25)
+    }
+
+    .summary div:last-child {
+      border-bottom: 0
+    }
+
+    button:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid #a866e8;
+      outline-offset: 3px
+    }
+
+    @media(min-width:560px) {
+      .page {
+        padding: 34px 30px
+      }
+
+      .choices {
+        gap: 11px
+      }
+
+      .choice {
+        padding: 13px 15px
+      }
+    }
+
+    @media(max-width:420px) {
+      .page {
+        padding: 20px 14px
+      }
+
+      .choices {
+        gap: 8px
+      }
+
+      .choice {
+        min-height: 56px
+      }
+
+      .choices.two {
+        grid-template-columns: 1fr
+      }
+
+      .two .choice {
+        min-height: 58px
+      }
+
+      .art {
+        margin-top: 3px;
+        margin-bottom: 3px
+      }
+
+      .lead {
+        line-height: 1.8
+      }
+    }
+
+    @media(max-width:340px) {
+      .page {
+        padding: 17px 11px
+      }
+
+      .h1,
+      h1 {
+        font-size: 2.2rem
+      }
+
+      .choice {
+        font-size: .88rem
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      html {
+        scroll-behavior: auto
+      }
+
+      * {
+        scroll-behavior: auto !important
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <div class="progress" id="progress"></div>
+  <div class="floaties" id="floaties"></div>
+  <main class="app">
+    <section class="page active" id="welcome">
+      <p class="tag">✦ A little world made for you ✦</p>
+      <div class="art">💗</div>
+      <p class="tag">October 28 · Your special day</p>
+      <h1>Happy Birthday,<br /><span>Mayeshah</span> ♡</h1>
+      <p class="lead">To my wonderful Apu — may your days be full of soft smiles, beautiful surprises, and all the
+        happiness your heart can hold. You deserve so much love, today and always.</p><button class="btn primary"
+        data-go="food">Let's Goo 💗 ↗</button>
+      <p class="small">A tiny birthday adventure, made with love.</p>
+    </section>
+    <section class="page" id="food">
+      <p class="tag">01 · The important question</p>
+      <div class="art">🍛</div>
+      <h2>Dhakat ashe te khawan ni.<br /><span>dekha hole ki khawaben kon?</span></h2>
+      <p class="lead">Konda khaben mane khawaben arki? 💗</p>
+      <div class="choices"><button class="choice" data-key="food" data-next="biriyani" data-value="Biriyani treat"><span
+            class="emoji">🍛</span><span class="label">Biriyani treat</span></button><button class="choice"
+          data-key="food" data-next="drink" data-value="Pizza / Burger"><span class="emoji">🍕</span><span
+            class="label">Pizza / Burger</span></button><button class="choice" data-key="food" data-next="drink"
+          data-value="Chinese food"><span class="emoji">🍜</span><span class="label">Chinese food</span></button><button
+          class="choice" data-key="food" data-next="drink" data-value="Surprise me"><span class="emoji">🎁</span><span
+            class="label">Surprise me!</span></button></div>
+    </section>
+    <section class="page" id="biriyani">
+      <p class="tag">01 · Pick your favorite</p>
+      <div class="art">🍽️</div>
+      <h2>Which biriyani<br /><span>do you want? 💕</span></h2>
+      <div class="choices"><button class="choice" data-key="food" data-next="dessert" data-value="Chicken Biryani"><span
+            class="emoji">🍗</span><span class="label">Chicken Biryani</span></button><button class="choice"
+          data-key="food" data-next="dessert" data-value="Kacchi Biryani"><span class="emoji">🍖</span><span
+            class="label">Kacchi Biryani</span></button><button class="choice" data-key="food" data-next="dessert"
+          data-value="Tehari"><span class="emoji">🍚</span><span class="label">Tehari</span></button></div>
+    </section>
+    <section class="page" id="dessert">
+      <p class="tag">01 · Sweet tooth check</p>
+      <div class="art">🍰</div>
+      <h2>Biriyani-r por<br /><span>ki khaben/khawaben? 🍨</span></h2>
+      <p class="lead">Dessert-er jonno alada pet ache, right? 😂</p>
+      <div class="choices"><button class="choice" data-key="dessert" data-next="drink" data-value="Ice cream"><span
+            class="emoji">🍦</span><span class="label">Ice cream</span></button><button class="choice"
+          data-key="dessert" data-next="drink" data-value="Chocolate cake"><span class="emoji">🍫</span><span
+            class="label">Chocolate cake</span></button><button class="choice" data-key="dessert" data-next="drink"
+          data-value="Faluda"><span class="emoji">🥤</span><span class="label">Faluda</span></button><button
+          class="choice" data-key="dessert" data-next="drink" data-value="Everything!"><span
+            class="emoji">🤭</span><span class="label">Sob kichu chai!</span></button></div>
+    </section>
+    <section class="page" id="drink">
+      <p class="tag">01 · Drink decision</p>
+      <div class="art">🧋</div>
+      <h2>Drink konta<br /><span>hobe, Apu? bolo maisa apuuu 💕</span></h2>
+      <div class="choices two"><button class="choice" data-key="drink" data-next="outing" data-value="Cold coffee"><span
+            class="emoji">☕</span><span class="label">Cold coffee</span></button><button class="choice" data-key="drink"
+          data-next="outing" data-value="Chocolate shake"><span class="emoji">🍫</span><span class="label">Chocolate
+            shake</span></button><button class="choice" data-key="drink" data-next="outing" data-value="Mod"><span
+            class="emoji">🍋</span><span class="label">Mod</span></button><button class="choice" data-key="drink"
+          data-next="outing" data-value="Fresh mod"><span class="emoji">🍹</span><span class="label">Fresh
+            mod</span></button></div>
+    </section>
+    <section class="page" id="outing">
+      <p class="tag">02 · Our little adventure</p>
+      <div class="art">🌷</div>
+      <h2>Ghurte<br /><span>jamu? 🌸</span></h2>
+      <p class="lead">Let's make a little memory together. What do you say, Apu?</p>
+      <div class="stack"><button class="btn primary" id="outingYes">YES, LET'S GO! ✨</button><button
+          class="btn secondary" id="outingNo">Maybe another day 💜</button></div>
+    </section>
+    <section class="page" id="destination">
+      <p class="tag">02 · Pick our vibe</p>
+      <div class="art">🗺️</div>
+      <h2>Kuti jaben<br /><span>kon? 💫</span></h2>
+      <div class="choices two"><button class="choice" data-key="destination" data-next="time"
+          data-value="Cafe / Restaurant"><span class="emoji">🍰</span><span class="label">Cafe /
+            Restaurant</span></button><button class="choice" data-key="destination" data-next="time"
+          data-value="A beautiful park"><span class="emoji">🌳</span><span class="label">Park</span></button><button
+          class="choice" data-key="destination" data-next="time" data-value="Sosur bari"><span
+            class="emoji">🛍️</span><span class="label">Sosur Bari</span></button><button class="choice"
+          data-key="destination" data-next="time" data-value="Rooftop / View"><span class="emoji">🌆</span><span
+            class="label">Rooftop / View</span></button><button class="choice" data-key="destination" data-next="time"
+          data-value="Surprise me!"><span class="emoji">🎁</span><span class="label">Surprise me!</span></button></div>
+    </section>
+    <section class="page" id="time">
+      <p class="tag">02 · Set the vibe</p>
+      <div class="art">🌅</div>
+      <h2>Baraben<br /><span>Kokhon? ✨</span></h2>
+      <div class="choices"><button class="choice" data-key="time" data-next="activity" data-value="Sokale"><span
+            class="emoji">🌞</span><span class="label">Sokale</span></button><button class="choice" data-key="time"
+          data-next="activity" data-value="Bikale"><span class="emoji">🌷</span><span
+            class="label">Bikale</span></button><button class="choice" data-key="time" data-next="activity"
+          data-value="Evening sunset"><span class="emoji">🌇</span><span class="label">Evening
+            sunset</span></button><button class="choice" data-key="time" data-next="activity"
+          data-value="Rat 10 tar por"><span class="emoji">🌙</span><span class="label">Rat 10 tar por</span></button></div>
+    </section>
+    <section class="page" id="activity">
+      <p class="tag">02 · Birthday activity</p>
+      <div class="art">🎉</div>
+      <h2>Kormu ta<br /><span>kiiiiii? 💗</span></h2>
+      <div class="choices"><button class="choice" data-key="activity" data-next="bill"
+          data-value="Take cute photos"><span class="emoji">📸</span><span class="label">Take cute
+            photos</span></button><button class="choice" data-key="activity" data-next="bill"
+          data-value="Eat and talk for hours"><span class="emoji">🍰</span><span class="label">Eat and talk for
+            hours</span></button><button class="choice" data-key="activity" data-next="bill"
+          data-value="Shopping adventure"><span class="emoji">🛍️</span><span class="label">Shopping
+            adventure</span></button><button class="choice" data-key="activity" data-next="bill"
+          data-value="Let it be a surprise"><span class="emoji">🎁</span><span class="label">Let it be a
+            surprise</span></button></div>
+    </section>
+    <section class="page" id="bill">
+      <p class="tag">03 · Very serious question 😂</p>
+      <div class="art">👑</div>
+      <h2>Birthday bill-ta<br /><span>ke dibe, Apu? 😂</span></h2>
+      <div class="choices"><button class="choice" data-key="bill" data-next="mood" data-value="maisa apu bill dibe"><span
+            class="emoji">😎</span><span class="label">Apni diben!</span></button><button class="choice" data-key="bill"
+          data-next="mood" data-value="maisa apu dibe"><span class="emoji">💅</span><span class="label">Apni diben
+            diba!</span></button><button class="choice" data-key="bill" data-next="mood"
+          data-value="Maisa apu bill dibe"><span class="emoji">👑</span><span class="label">Maisa apu bill dibe!</span></button></div>
+      <p class="small" id="billResponse"></p>
+    </section>
+    <section class="page" id="mood">
+      <p class="tag">03 · Apu mood scanner</p>
+      <div class="art">🤭</div>
+      <h2>Right now, you're…<br /><span>which one? 💕</span></h2>
+      <div class="choices"><button class="choice" data-key="mood" data-next="wishCount"
+          data-value="Happy princess"><span class="emoji">👸</span><span class="label">Happy
+            princess</span></button><button class="choice" data-key="mood" data-next="wishCount"
+          data-value="Hungry"><span class="emoji">😭</span><span class="label">Khida lagse!</span></button><button
+          class="choice" data-key="mood" data-next="wishCount" data-value="Shopping mood"><span
+            class="emoji">🛍️</span><span class="label">Shopping mood</span></button><button class="choice"
+          data-key="mood" data-next="wishCount" data-value="Do not disturb"><span class="emoji">😴</span><span
+            class="label">Don't disturb</span></button></div>
+      <p class="small" id="moodResponse"></p>
+    </section>
+    <section class="page" id="wishCount">
+      <p class="tag">03 · Unlimited wishes</p>
+      <div class="art">💫</div>
+      <h2>How many birthday<br /><span>wishes do you want? 💗</span></h2>
+      <div class="choices"><button class="choice" data-key="wishCount" data-next="gift"
+          data-value="One, but special"><span class="emoji">💌</span><span class="label">One, but
+            special</span></button><button class="choice" data-key="wishCount" data-next="gift"
+          data-value="100 wishes"><span class="emoji">💯</span><span class="label">100 ta!</span></button><button
+          class="choice" data-key="wishCount" data-next="gift" data- value="Unlimited wishes"><span
+            class="emoji">✨</span><span class="label">Unlimited wishes!</span></button></div>
+      <p class="small" id="wishCountResponse"></p>
+    </section>
+    <section class="page" id="gift">
+      <p class="tag">04 · A little gift question</p>
+      <div class="art">🎁</div>
+      <h2>What gift would<br /><span>make you smile? 🎀</span></h2>
+      <div class="choices"><button class="choice" data-key="gift" data-next="meetPlan" data-value="Dress"><span
+            class="emoji">👗</span><span class="label">A pretty dress</span></button><button class="choice"
+          data-key="gift" data-next="meetPlan" data-value="Amar akhon oke lagbe"><span class="emoji">🌸</span><span
+            class="label">Amar Akhon oke lagbe</span></button><button class="choice" data-key="gift" data-next="meetPlan"
+          data-value="Jewellery"><span class="emoji">💎</span><span class="label">Jewellery</span></button><button
+          class="choice" data-key="gift" data-next="meetPlan" data-value="Chocolate box"><span
+            class="emoji">🍫</span><span class="label">Chocolate box</span></button><button class="choice"
+          data-key="gift" data-next="meetPlan" data-value="Tomar vaiyake"><span class="emoji">💝</span><span
+            class="label">Tomar Vaiyake!</span></button></div>
+      <p class="small" id="giftResponse"></p>
+    </section>
+    <section class="page" id="meetPlan">
+      <p class="tag">♡ · Our meet-up plan</p>
+      <div class="art">🌷</div>
+      <h2>Dekha hole prothome<br /><span>ki korben, Apu? 💗</span></h2>
+      <p class="lead">Na Borolox Der Sathe Temon Dekha Kori Nai to Tai ala kosi arki</p>
+      <div class="choices"><button class="choice" data-key="meetPlan" data-next="meetVibe"
+          data-value="Cafe te adda"><span class="emoji">☕</span><span class="label">Cafe te adda</span></button><button
+          class="choice" data-key="meetPlan" data-next="meetVibe" data-value="Khabar khete jabo"><span
+            class="emoji">🍽️</span><span class="label">Khabar khete jabo</span></button><button class="choice"
+          data-key="meetPlan" data-next="meetVibe" data-value="Photo tulbo"><span class="emoji">📸</span><span
+            class="label">Photo tulbo</span></button><button class="choice" data-key="meetPlan" data-next="meetVibe"
+          data-value="Tok Setur Kotha koye Dukkho dimu"><span class="emoji">🎁</span><span class="label">Tok Setur Kotha koye Dukkho dimu!</span></button>
+      </div>
+    </section>
+    <section class="page" id="meetVibe">
+      <p class="tag">♡ · Pick our vibe</p>
+      <div class="art">✨</div>
+      <h2>Amader dekhar din<br /><span>kemon hobe? 🌸</span></h2>
+      <div class="choices two"><button class="choice" data-key="meetVibe" data-next="firstWords"
+          data-value="Cute and aesthetic"><span class="emoji">🌷</span><span class="label">Cute &amp;
+            aesthetic</span></button><button class="choice" data-key="meetVibe" data-next="firstWords"
+          data-value="Funny and chaotic"><span class="emoji">😂</span><span class="label">Funny &amp;
+            chaotic</span></button><button class="choice" data-key="meetVibe" data-next="firstWords"
+          data-value="Peaceful and cozy"><span class="emoji">🤍</span><span class="label">Peaceful &amp;
+            cozy</span></button><button class="choice" data-key="meetVibe" data-next="firstWords"
+          data-value="Full of surprises"><span class="emoji">🎀</span><span class="label">Full of
+            surprises</span></button></div>
+    </section>
+    <section class="page" id="firstWords">
+      <p class="tag">♡ · Your own words</p>
+      <div class="art">🥹💗</div>
+      <h2>Dekha hole amake<br /><span>prothome ki koben kon?</span></h2>
+      <p class="lead">No options here—write whatever comes to your mind.</p><label class="field-label"
+        for="firstWordsText">Your reply</label><textarea class="field" id="firstWordsText" maxlength="700"
+        placeholder="Mon theke ja bolte chan, ekhane lekhen…" rows="4"></textarea><button class="btn primary"
+        id="saveFirstWords" style="margin-top:12px">Continue 💌</button>
+      <p class="small" id="firstWordsResponse"></p>
+    </section>
+    <section class="page" id="meetIdea">
+      <p class="tag">♡ · One last question</p>
+      <div class="art">💌</div>
+      <h2>Amak niye ana kisu kon<br /><span>Ami Kmn🙂? ✨</span></h2>
+      <p class="lead">Only a text reply—tell me your own plan, idea, or anything you want to say.</p><label
+        class="field-label" for="meetIdeaText">Your idea or message</label><textarea class="field" id="meetIdeaText"
+        maxlength="700" placeholder="Apnar idea ekhane likhen…" rows="4"></textarea><button class="btn primary"
+        id="saveMeetIdea" style="margin-top:12px">Save &amp; continue 💗</button>
+      <p class="small" id="meetIdeaResponse"></p>
+    </section>
+    <section class="page" id="birthdayWish">
+      <p class="tag">05 · Your wish for this year</p>
+      <div class="art">🌠</div>
+      <h2>A bochor ar best wish?<br /><span>kanden na jan abar 💌</span></h2>
+      <p class="lead">Choose what your heart wants most, or write your own.</p>
+      <div class="choices"><button class="choice" data-wish="Happiness and peace"><span class="emoji">🕊️</span><span
+            class="label">Happiness and peace</span></button><button class="choice"
+          data-wish="Success in my dreams"><span class="emoji">✨</span><span class="label">Success in my
+            dreams</span></button><button class="choice" data-wish="My family always stays happy"><span
+            class="emoji">🏡</span><span class="label">My family always stays happy</span></button><button
+          class="choice" data-wish="Travel and make memories"><span class="emoji">✈️</span><span class="label">Moner moto sob lagbe amar!
+          </br>Paboi InshaAllah </span></button></div><label class="field-label" for="ownWish">Or write your own
+        wish</label><textarea class="field" id="ownWish" maxlength="300" placeholder="This year, I wish for…"
+        rows="2"></textarea><button class="btn primary" id="saveWish" style="margin-top:12px">Save my wish 💗</button>
+      <p class="small" id="wishResponse"></p>
+    </section>
+    <section class="page" id="message">
+      <p class="tag">06 · One message for me</p>
+      <div class="art">🥹💌</div>
+      <h2>Apnar jonno<br /><span>Ami kmn? 💗</span></h2>
+      <p class="lead">Anything sweet, funny, or totally random. This is your space.</p><label class="field-label"
+        for="messageText">Your message</label><textarea class="field" id="messageText" maxlength="1000"
+        placeholder="Write anything you want to tell me…" rows="5"></textarea><button class="btn primary"
+        id="finishMessage" style="margin-top:12px">Send my love 💌</button>
+      <p class="small">Demo note: answers stay in this browser; they are not sent online.</p>
+    </section>
+    <section class="page" id="summary">
+      <p class="tag">Your birthday plan</p>
+      <div class="art">📝</div>
+      <h2>Apu's perfect day<br /><span>plan is ready! 💖</span></h2>
+      <div class="summary" id="summaryContent"></div><button class="btn primary" data-go="letter">Open your birthday
+        letter 💌</button>
+    </section>
+    <section class="page" id="letter">
+      <p class="tag">A little note for you</p>
+      <div class="art">💌</div>
+      <h2>For you,<br /><span>Mayeshah Apu</span></h2>
+      <article class="letter">
+        <p class="dear">My dearest Apu,</p>
+        <p>Happy Birthday to one of the most special people in my life. 💗</p>
+        <p>Sotti kotha bolte ami mentaly and physically onek kmn jani hoye gesi tar moddhe kono kisu te kono interest nai.
+          Abar janen ai koydin koto peray asi apu,basay o chilam na khali dour ar upor.somoy pai nai apnar jonno valo kore kisu korte arki.Sorry for that.
+          But jmn ta pari nijer sorboccho ta disi apu.Amar kase to ar taka nai je kisu gift dite parbo tai ja pari tai kore dilam.
+          jani na kmn hoise jinis ta but ja pari tai kore dilam.
+          Apni bade ami sotti kauke ato kisu boli na,ja hoise jar sathe jetai hoise dine ki holo agula sob theke besi apnakei boli.
+          you are my comfort zone apu but poristhiti ato kharap jacche je nijei kmn hoye jacchi online ba dine karo sathe rude hoile oitao apnar sathei hoi.
+          Apnakei sunai.Sob kisu apnar sathei share kori. Ar ha bolchilam je important kaj ache aitai oita. its very important for me.
+          karon apni bade to amake support diyar moto kew nai, asholei kew nai sotti, amar weak point ar moddhei apnio akjon.
+        </p>
+        <p>Thank you for being you. You deserve happiness that stays, dreams that come true, and memories that make you
+          smile for years to come.
+        Dekhben Jibone ja kisu chaichen tar sob gula moner moto kore paben InshaAllah</p>
+        <p>May Allah bless your life with good health, peace, success, and endless barakah. Ameen. 🤍
+          and ha you are best.
+        </p>
+        <p class="signoff">With lots of love, always ♡</p>
+      </article><button class="btn primary" data-go="finale">One last surprise ✨</button>
+    </section>
+    <section class="page" id="finale">
+      <p class="tag">Make a wish, birthday girl</p>
+      <div class="cake">🎂</div>
+      <h2>Keep shining,<br /><span>Mayeshah! Apuu ✨</span></h2>
+      <p class="lead">The world is sweeter with you in it. Here's to another year of laughter, love, and beautiful
+        beginnings.And apni amar jibone asen boilei hoito amar jibon tao sundor aktu holeo.</p>
+      <p class="lead">You are loved more than words can say. 💗</p><button class="btn primary" id="replay">Replay our
+        little adventure ↻</button>
+    </section>
+  </main>
+  <footer>MADE WITH <b>♥</b> JUST FOR MAYESHAH APU</footer>
+  <script>
+    const pages = [...document.querySelectorAll('.page')], progress = document.getElementById('progress');
 
-<div id="heart-field"></div>
+    const order = pages.map(p => p.id), A = {};
+    function say(english) { return english; }
+    function go(id) { pages.forEach(p => { p.classList.toggle('active', p.id === id); p.setAttribute('aria-hidden', String(p.id !== id)) }); progress.style.width = ((order.indexOf(id) + 1) / order.length * 100) + '%'; window.scrollTo({ top: 0, behavior: 'smooth' }); if (id === 'summary') renderSummary(); if (id === 'summary' || id === 'finale') confetti(id === 'finale' ? 100 : 35) }
+    document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => go(b.dataset.go)));
 
-<div class="stage">
-
-  <!-- 0: Welcome -->
-  <section class="card active" data-screen="welcome">
-    <div class="tape left"></div><div class="tape right"></div>
-    <div class="eyebrow">A little letter for you</div>
-    <h2 class="title">Happy Birthday SETU 🎂</h2>
-    <p class="body-text">Today is your day — only yours. 💕</p>
-    <p class="body-text">Your smile and eyebrow is my favorite thing, you know that?</p>
-    <p class="body-text">Let's celebrate your birthday a little differently...</p>
-    <div class="btn-row">
-      <button class="seal-btn" onclick="handleSeal(this); goTo('giftAsk')">Let's start →</button>
-    </div>
-  </section>
-
-  <!-- 1: Gift accept (playful forced-yes) -->
-  <section class="card" data-screen="giftAsk">
-    <div class="tape left"></div><div class="tape right"></div>
-    <div class="eyebrow">Gift</div>
-    <h2 class="title">I have a gift for you...<br>you'll accept it picchi,right? 🎁</h2>
-    <div id="giftReaction"></div>
-    <div class="btn-row">
-      <button class="seal-btn" onclick="handleSeal(this); acceptGift()">Yes 💖</button>
-      <button class="seal-btn ghost" onclick="declineGift(this)">No</button>
-    </div>
-    <div id="giftSkip"></div>
-  </section>
-
-  <!-- 2: thanks (brief) -->
-  <section class="card" data-screen="giftThanks">
-    <div class="tape left"></div><div class="tape right"></div>
-    <div class="reaction-emoji">🥰</div>
-    <h2 class="title">Thank you!</h2>
-    <p class="body-text">Knew you couldn't say no 😌</p>
-  </section>
-
-  <!-- 3: MCQ 1 -->
-  <section class="card" data-screen="mcq1">
-    <div class="tape left"></div><div class="tape right"></div>
-    <div class="progress" id="progress-q">
-      <span class="dot now"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
-    </div>
-    <div class="eyebrow">Question 1</div>
-    <h2 class="title">Bolo Picchi, what gift will you take?</h2>
-    <div class="options">
-      <button class="opt-btn" onclick="selectMCQ(this,'giftChoice','Saree','mcq2')">1. Saree</button>
-      <button class="opt-btn" onclick="selectMCQ(this,'giftChoice','Burqa','mcq2')">2. Borkha</button>
-      <button class="opt-btn" onclick="selectMCQ(this,'giftChoice','Three-piece','mcq2')">3. Three-piece</button>
-    </div>
-  </section>
-
-  <!-- 4: MCQ 2 -->
-  <section class="card" data-screen="mcq2">
-    <div class="tape left"></div><div class="tape right"></div>
-    <div class="progress">
-      <span class="dot done"></span><span class="dot now"></span><span class="dot"></span><span class="dot"></span>
-    </div>
-    <div class="eyebrow">Question 2</div>
-    <h2 class="title">Akhon Bolo, what's your Ajaira Shokh?</h2>
-    <div class="options">
-      <button class="opt-btn" onclick="selectMCQ(this,'hobby','Nail polish','mcq3')">1. Nail polish</button>
-      <button class="opt-btn" onclick="selectMCQ(this,'hobby','Bags & shoes','mcq3')">2. Bags & shoes</button>
-      <button class="opt-btn" onclick="selectMCQ(this,'hobby','Makeup & sunscreen','mcq3')">3. Makeup & sunscreen</button>
-    </div>
-  </section>
-
-  <!-- 5: MCQ 3 -->
-  <section class="card" data-screen="mcq3">
-    <div class="tape left"></div><div class="tape right"></div>
-    <div class="progress">
-      <span class="dot done"></span><span class="dot done"></span><span class="dot now"></span><span class="dot"></span>
-    </div>
-    <div class="eyebrow">Question 3</div>
-    <h2 class="title">Khaba ki?Ajke ja khaite chaiba tai</h2>
-    <div class="options">
-      <button class="opt-btn" onclick="selectMCQ(this,'food','Biryani','goOut')">1. Biryani</button>
-      <button class="opt-btn" onclick="selectMCQ(this,'food','Pizza','goOut')">2. Pizza</button>
-      <button class="opt-btn" onclick="selectMCQ(this,'food','Ice cream','goOut')">3. Ice cream</button>
-    </div>
-  </section>
-
-  <!-- 6: go out -->
-  <section class="card" data-screen="goOut">
-    <div class="tape left"></div><div class="tape right"></div>
-    <div class="progress">
-      <span class="dot done"></span><span class="dot done"></span><span class="dot done"></span><span class="dot now"></span>
-    </div>
-    <div class="eyebrow">Question 4</div>
-    <h2 class="title">Ghurte Jaba? Barir Konay pore na theke! 🌇</h2>
-    <div id="goOutReaction"></div>
-    <div class="btn-row">
-      <button class="seal-btn" onclick="handleSeal(this); goOutYes()">Yes 🥳</button>
-      <button class="seal-btn ghost" onclick="goOutNo(this)">No</button>
-    </div>
-    <div id="goOutSkip"></div>
-  </section>
-
-  <!-- 7: text q1 -->
-  <section class="card" data-screen="text1">
-    <div class="tape left"></div><div class="tape right"></div>
-    <div class="eyebrow">Akhon Agula sob sotti bolba!PLZ</div>
-    <h2 class="title">How do you feel about me? & Ami kemon?</h2>
-    <p class="sub">Tell me in detail, be totally honest plz 🙂</p>
-    <textarea id="q1" placeholder="Write what's on your mind here..."></textarea>
-    <div class="btn-row">
-      <button class="seal-btn" id="q1btn" disabled onclick="handleSeal(this); saveText('q1','text2')">Next question →</button>
-    </div>
-  </section>
-
-  <!-- 8: text q2 -->
-  <section class="card" data-screen="text2">
-    <div class="tape left"></div><div class="tape right"></div>
-    <div class="eyebrow">Question 2</div>
-    <h2 class="title">Amar kon habit ta tomar valo lage na?</h2>
-    <p class="sub">Be honest, Ami kisu mone korbo na.Change korar Try korbo. 😅</p>
-    <textarea id="q2" placeholder="Go ahead, write it..."></textarea>
-    <div class="btn-row">
-      <button class="seal-btn" id="q2btn" disabled onclick="handleSeal(this); saveText('q2','text3')">Next question →</button>
-    </div>
-  </section>
-
-  <!-- 9: text q3 -->
-  <section class="card" data-screen="text3">
-    <div class="tape left"></div><div class="tape right"></div>
-    <div class="eyebrow">Last question</div>
-    <h2 class="title">Ami ki korle tmi khusi hoba?jekono kaj!</h2>
-    <p class="sub">Ja tomar mone ashe bolo jate tmi khusi how ✨</p>l2
-    <textarea id="q3" placeholder="Write a little something for me..."></textarea>
-    <div class="btn-row">
-      <button class="seal-btn" id="q3btn" disabled onclick="handleSeal(this); submitAll()">Submit 💌</button>
-    </div>
-  </section>
-
-  <!-- 10: submitting -->
-  <section class="card" data-screen="submitting">
-    <p class="body-text">Sending your letter...</p>
-    <div class="spinner"></div>
-  </section>
-
-  <!-- 11: final -->
-  <section class="card final-glow" data-screen="final">
-    <div class="tape left"></div><div class="tape right"></div>
-    <span class="heart-big">❤️</span>
-    <h2 class="title">I love you so much</h2>
-    <p class="body-text">Thank you so much for staying beside someone like me.</p>
-    <p class="body-text">I just want you to always be this happy. 🎉</p>
-    <p class="body-text">Amar moto karo pashe thakar jonno sotti onek dhonnobad.</p>
-    <div class="final-sig signature-font">— FAHIM</div>
-  </section>
-
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.2/confetti.browser.min.js"></script>
-
-<!-- Firebase Modular SDKs -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyCWyIgVssGQIav8fVmHY7Wl_qYvUvwJK6s",
-    authDomain: "birthday-12df4.firebaseapp.com",
-    projectId: "birthday-12df4",
-    storageBucket: "birthday-12df4.firebasestorage.app",
-    messagingSenderId: "220389345590",
-    appId: "1:220389345590:web:6a7e1a02a7ac93a4ba0b97",
-    measurementId: "G-LKPT4NWTQK"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  const RECIPIENT_NAME = "";
-
-  const answers = {
-    giftAccept: "", giftChoice: "", hobby: "", food: "",
-    wantsToGoOut: "", q1: "", q2: "", q3: ""
-  };
-
-  let giftNoCount = 0;
-  const giftReplies = [
-    "😢 Mukher Upore na?...",
-    "🥺 Please, think again? Nitei Hobe Kisu",
-    "😤 Huh, still no?!",
-    "🙃 Okay fine, just think a little and say yes"
-  ];
-
-  window.showScreen = function(id){
-    document.querySelectorAll('.card').forEach(c=>c.classList.remove('active'));
-    const el = document.querySelector(`.card[data-screen="${id}"]`);
-    if(el) el.classList.add('active');
-  };
-
-  window.goTo = function(id){ showScreen(id); };
-
-  window.handleSeal = function(btn){
-    const ring = document.createElement('span');
-    ring.className = 'stamp-ring';
-    const rect = btn.getBoundingClientRect();
-    ring.style.left = (rect.width/2) + 'px';
-    ring.style.top = (rect.height/2) + 'px';
-    btn.style.position = 'relative';
-    btn.appendChild(ring);
-    setTimeout(()=>ring.remove(), 600);
-  };
-
-  /* --- gift accept --- */
-  window.acceptGift = function(){
-    answers.giftAccept = "Yes";
-    showScreen('giftThanks');
-    setTimeout(()=>showScreen('mcq1'), 1400);
-  };
-
-  window.declineGift = function(btn){
-    giftNoCount++;
-    const msg = giftReplies[Math.min(giftNoCount-1, giftReplies.length-1)];
-    document.getElementById('giftReaction').innerHTML = `<div class="reaction-emoji">😢</div><p class="sub">${msg}</p>`;
-    document.querySelector('[data-screen="giftAsk"]').classList.add('shake');
-    setTimeout(()=>document.querySelector('[data-screen="giftAsk"]').classList.remove('shake'), 450);
-  };
-
-  /* --- MCQ handling --- */
-  window.selectMCQ = function(btn, key, value, nextScreen){
-    const group = btn.parentElement.querySelectorAll('.opt-btn');
-    group.forEach(b=>b.classList.remove('selected'));
-    btn.classList.add('selected');
-    answers[key] = value;
-    setTimeout(()=>showScreen(nextScreen), 420);
-  };
-
-  /* --- go out question --- */
-  window.goOutYes = function(){
-    answers.wantsToGoOut = "Yes";
-    document.getElementById('goOutReaction').innerHTML = `<div class="reaction-emoji">🥳🎉</div>`;
-    burstConfetti();
-    setTimeout(()=>showScreen('text1'), 1100);
-  };
-
-  window.goOutNo = function(btn){
-    answers.wantsToGoOut = "No (but I'm asking again)";
-    document.getElementById('goOutReaction').innerHTML = `<div class="reaction-emoji">🥺</div><p class="sub">Please come na... time with you would be so special 🌸</p>`;
-    document.querySelector('[data-screen="goOut"]').classList.add('shake');
-    setTimeout(()=>document.querySelector('[data-screen="goOut"]').classList.remove('shake'), 450);
-    if(!document.getElementById('goOutSkip').innerHTML){
-      document.getElementById('goOutSkip').innerHTML =
-        `<button class="skip-link" onclick="showScreen('text1')">Okay, let's go to the next question →</button>`;
+    document.querySelectorAll('[data-key]').forEach(b => b.addEventListener('click', () => {
+      A[b.dataset.key] = b.dataset.value;
+      document.querySelectorAll('[data-key="' + b.dataset.key + '"]').forEach(x => x.classList.toggle('selected', x === b));
+      const responses = {
+        bill: { "I'll pay": "Apu, you are officially the birthday sponsor! 😎💸", "You pay": "Aha! Ami wallet niye ready thakbo… maybe. 😂", "Birthday girl pays nothing": "Correct answer! Birthday queen pays in smiles only. 👑💗" },
+        mood: { "Happy princess": "Royal treatment activated, Your Highness! 👑", "Hungry": "Emergency biriyani team, report immediately! 🍛😂", "Shopping mood": "Wallet has left the chat. 🛍️😭", "Do not disturb": "Birthday nap protected by royal decree. 😴💗" },
+        wishCount: { "Unlimited wishes": "Unlimited wishes unlocked. Loading a million hugs… 💗✨", "100 wishes": "100 wishes coming right up! 😂", "One, but special": "One special wish, wrapped with extra love. 💌" },
+        gift: { "Secret surprise": "Ohooo, mysterious Apu! Surprise mode activated. 🎁" }
+      };
+      const targets = { bill: 'billResponse', mood: 'moodResponse', wishCount: 'wishCountResponse', gift: 'giftResponse' };
+      const target = targets[b.dataset.key] && document.getElementById(targets[b.dataset.key]);
+      if (target) target.textContent = (responses[b.dataset.key] || {})[b.dataset.value] || '';
+      setTimeout(() => go(b.dataset.next), 420);
+    }));
+    document.getElementById('outingYes').onclick = () => { A.outing = 'Yes, outing time!'; go('destination') }; document.getElementById('outingNo').onclick = () => { A.outing = 'Maybe another day'; A.destination = 'Cozy celebration'; A.time = 'Whenever Apu wants'; A.activity = 'A relaxed celebration'; go('bill') };
+    document.querySelectorAll('[data-wish]').forEach(b => b.onclick = () => { document.querySelectorAll('[data-wish]').forEach(x => x.classList.toggle('selected', x === b)); A.wish = b.dataset.wish; document.getElementById('ownWish').value = b.querySelector('.label').textContent });
+    document.getElementById('saveFirstWords').onclick = () => { A.firstWords = document.getElementById('firstWordsText').value.trim(); if (!A.firstWords) { document.getElementById('firstWordsResponse').textContent = say('A little reply likhe dao, Apu 💗', 'একটু উত্তর লিখে দাও, আপু 💗'); return } go('meetIdea') };
+    document.getElementById('saveMeetIdea').onclick = () => { A.meetIdea = document.getElementById('meetIdeaText').value.trim(); if (!A.meetIdea) { document.getElementById('meetIdeaResponse').textContent = say('Tomar idea ba message-ta likhe dao 💗', 'তোমার আইডিয়া বা বার্তাটা লিখে দাও 💗'); return } go('birthdayWish') };
+    document.getElementById('saveWish').onclick = () => { A.wish = document.getElementById('ownWish').value.trim() || A.wish; if (!A.wish) { document.getElementById('wishResponse').textContent = say('Pick an option or write a wish first, Apu 💗', 'আগে একটি অপশন বেছে নাও অথবা নিজের ইচ্ছা লিখে দাও, আপু 💗'); return } document.getElementById('wishResponse').textContent = say('Your wish is saved in this page. May it come true! 🤍', 'তোমার ইচ্ছা সেভ হয়েছে। এটা পূরণ হোক! 🤍'); setTimeout(() => go('message'), 550) };
+    document.getElementById('finishMessage').onclick = () => { A.message = document.getElementById('messageText').value.trim(); go('summary') };
+    function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])) }
+    function renderSummary() {
+      const labels = { food: 'Food choice', dessert: 'Dessert', drink: 'Drink', outing: 'Outing', destination: 'Destination', time: 'Time', activity: 'Activity', bill: 'Who pays?', mood: 'Mood', wishCount: 'Birthday wishes', gift: 'Gift', meetPlan: 'Meet-up plan', meetVibe: 'Meet-up vibe', firstWords: 'What she would say first', meetIdea: 'Meet-up idea', wish: 'Her wish', message: 'Her message' };
+      document.getElementById('summaryContent').innerHTML = Object.entries(A).filter(([k, v]) => v).map(([k, v]) => '<div><b>' + esc(labels[k] || k) + ':</b> ' + esc(v) + '</div>').join('') || 'A day full of love and surprises 💗';
     }
-  };
-
-  /* --- text inputs --- */
-  ['q1','q2','q3'].forEach(id=>{
-    const ta = document.getElementById(id);
-    const btn = document.getElementById(id+'btn');
-    if(ta && btn){
-      ta.addEventListener('input', ()=>{ btn.disabled = ta.value.trim().length === 0; });
-    }
-  });
-
-  window.saveText = function(key, next){
-    answers[key] = document.getElementById(key).value.trim();
-    showScreen(next);
-  };
-
-  /* --- submit to Firebase --- */
-  window.submitAll = async function(){
-    answers.q3 = document.getElementById('q3').value.trim();
-    showScreen('submitting');
-
-    const payload = { 
-      ...answers, 
-      name: RECIPIENT_NAME,
-      submittedAt: serverTimestamp() 
-    };
-
-    try {
-      await addDoc(collection(db, "responses"), payload);
-    } catch (e) {
-      console.error("Error saving response to Firebase: ", e);
-    } finally {
-      showScreen('final');
-      burstConfetti(true);
-    }
-  };
-
-  /* --- confetti --- */
-  function burstConfetti(big){
-    if(typeof confetti !== 'function') return;
-    confetti({
-      particleCount: big ? 140 : 60,
-      spread: big ? 100 : 60,
-      origin: { y: 0.6 },
-      colors: ['#D9536F','#E9C875','#F4C9CE','#B23A54']
-    });
-    if(big){
-      setTimeout(()=>confetti({particleCount:100, spread:120, origin:{y:0.4}, colors:['#D9536F','#E9C875','#F4C9CE']}), 350);
-    }
-  }
-
-  /* --- ambient hearts --- */
-  (function initHearts(){
-    const field = document.getElementById('heart-field');
-    const total = 14;
-    for(let i=0;i<total;i++){
-      const h = document.createElement('span');
-      h.className = 'heart' + (i % 3 === 0 ? ' gold' : '');
-      h.style.left = Math.random()*100 + 'vw';
-      h.style.animationDuration = (10 + Math.random()*10) + 's';
-      h.style.animationDelay = (Math.random()*12) + 's';
-      h.style.transform = `scale(${0.6 + Math.random()*0.9}) rotate(45deg)`;
-      field.appendChild(h);
-    }
-  })();
-</script>
+    document.getElementById('replay').onclick = () => { Object.keys(A).forEach(k => delete A[k]); document.querySelectorAll('.choice').forEach(x => x.classList.remove('selected')); document.querySelectorAll('textarea').forEach(x => x.value = ''); document.querySelectorAll('.small').forEach(x => x.textContent = ''); go('welcome') };
+    function confetti(n) { const sy = ['💗', '♡', '✦', '✧', '🌸', '✨', '🎉']; for (let i = 0; i < n; i++) { let e = document.createElement('span'); e.className = 'confetti'; e.textContent = sy[Math.random() * sy.length | 0]; e.style.left = Math.random() * 100 + '%'; e.style.fontSize = (11 + Math.random() * 16) + 'px'; e.style.setProperty('--t', (2.3 + Math.random() * 3) + 's'); e.style.setProperty('--d', (Math.random() * 180 - 90) + 'px'); e.style.animationDelay = Math.random() * .6 + 's'; document.body.appendChild(e); setTimeout(() => e.remove(), 6000) } }
+    for (let i = 0; i < 22; i++) { let e = document.createElement('span'); e.className = 'floaty'; e.textContent = ['♡', '✦', '♥', '✧', '🌸'][Math.random() * 5 | 0]; e.style.left = Math.random() * 100 + '%'; e.style.fontSize = (12 + Math.random() * 18) + 'px'; e.style.animationDuration = (10 + Math.random() * 14) + 's'; e.style.animationDelay = (-Math.random() * 20) + 's'; document.getElementById('floaties').appendChild(e) }
+    go('welcome');
+  </script>
 </body>
+
 </html>
